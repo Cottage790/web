@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Página web de YO</title>
+        <link rel="stylesheet" href="css/estiloYO.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Carter+One&family=Roboto&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <main>
+            <header>
+                <img src="imagenes/UACJ.png" width="180px" style="float: left; margin-left: 20px; margin-top: 10px">
+                <h1 id="Comienzo" style="font-family: 'Carter One', cursive;">Página web de validación</h1>
+            </header>
+            <section id="contenido">
+                <div class="esquina"></div>
+                <div id="Interior">
+
+                    <div class="division" style="margin-top: 0px"></div>
+                    <div id="Formulario">
+                        <fieldset>
+                            <legend>Registro</legend>
+                            <form>
+                                Nombre:
+                                <input onkeypress="return soloLetras(event)" type="text" name="Nombre" id="NombreTxt" minlength="4" maxlength="10" pattern="[A-Za-z]{4,10}" willValidate="true">
+                                <div style="font-size:10px">
+                                    Minimo 4 caracteres<br>
+                                    Maximo 10 caracteres<br>
+                                    Sin números ni caracteres especiales<br><br>
+                                </div>
+                                Apellido:
+                                <input onkeypress="return soloLetras(event)" type="text" name="Apellido" id="ApellidoTxt" minlength="4" maxlength="10" pattern="[A-Za-z]{4,10}" willValidate="true">
+                                <div style="font-size:10px">
+                                    Minimo 4 caracteres<br>
+                                    Maximo 10 caracteres<br>
+                                    Sin números ni caracteres especiales<br><br>
+                                </div>
+                                Correo:
+                                <input type="email" name="correo" id="CorreoTxt" minlength="1" maxlength="30" willValidate="true">
+                                <div style="font-size:10px">
+                                    Requerido utilizar formato de correo (ejemplo@direccion)<br><br>
+                                </div>
+
+                                Contraseña:
+                                <input onkeypress="return soloContrasena(event)" type="text" name="contra" id="ContraTxt" minlength="4" maxlength="10" pattern="[A-Za-z!@#$%^&*]{4,10}" willValidate="true">
+                                <div style="font-size:10px">
+                                    Minimo 4 caracteres<br>
+                                    Maximo 10 caracteres<br>
+                                    Usar al menos una tecla especial (! @ # $ % ^ & *)<br><br>
+                                </div>
+
+                                <input disabled id="btnEnvio" type="submit" value="Enviar" onclick="comprobar()">
+                                <input type="reset" value="Eliminar progreso">
+                            </form>
+                        </fieldset>
+                        <div class="division"></div>
+                    </div>
+                </div>
+                <div class="esquina"></div>
+            </section>
+            <footer>
+                <ul>
+                    <br>
+                    <br>
+                    <li>
+                        <a href="#Comienzo"><i>Haz click aqui para ir al inicio</i></a>
+                    </li>
+                </ul>
+                <section id="redes">
+                    <p>Búscanos en nuestras redes sociales</p>
+                    <a href="#"><i class="fa fa-facebook" style="font-size: 36px"></i></a>
+                    <a href="#"><i class="fa fa-snapchat" style="font-size:36px"></i></a>
+                    <a href="#"><i class="fa fa-tumblr" style="font-size:36px"></i></a>
+                    <a href="#"><i class="fa fa-twitter" style="font-size:36px"></i></a>
+                    <a href="#"><i class="fa fa-whatsapp" style="font-size:36px"></i></a>
+                    <a href="#"><i class="fa fa-instagram" style="font-size:36px"></i></a>
+                </section>
+
+                <p class="design">Diseñado por Christian Kortright Farías</p>
+                <p class="design">Teléfono celular (555) 555-5555</p>
+
+            </footer>
+        </main>
+
+        <script>
+            let activadorNombre = document.getElementById("NombreTxt")
+            let activadorApellido = document.getElementById("ApellidoTxt")
+            let activadorContra = document.getElementById("ContraTxt")
+            let activadorCorreo = document.getElementById("CorreoTxt")
+
+
+            function soloLetras(e) {
+                key = e.keyCode || e.which;
+                tecla = String.fromCharCode(key).toLowerCase();
+                letras = "áéíóúabcdefghijklmnñopqrstuvwxyz";
+                especiales = [];
+
+                tecla_especial = false
+                for (var i in especiales) {
+                    if (key == especiales[i]) {
+                        tecla_especial = true;
+                        break;
+                    }
+                }
+
+                if (letras.indexOf(tecla) == -1 && !tecla_especial)
+                    return false;
+            }
+
+            function soloContrasena(e) {
+                key = e.keyCode || e.which;
+                tecla = String.fromCharCode(key).toLowerCase();
+                letras = "áéíóúabcdefghijklmnñopqrstuvwxyz1234567890!@#$%^&*";
+                especiales = [];
+
+                tecla_especial = false
+                for (var i in especiales) {
+                    if (key == especiales[i]) {
+                        tecla_especial = true;
+                        break;
+                    }
+                }
+
+                if (letras.indexOf(tecla) == -1 && !tecla_especial)
+                    return false;
+            }
+
+            activadorNombre.addEventListener("keyup", () => {
+                var valido = false
+                var valido2 = false
+                var invalido = false
+                for (var i = 0; i < activadorCorreo.value.length; i++) {
+                    if (activadorCorreo.value[i] === '@' && i != activadorCorreo.value.length - 1) {
+                        if (valido) {
+                            invalido = true
+                        } else {
+                            valido = true
+                            for (var i = 0; i < activadorContra.value.length; i++) {
+                                if (activadorCorreo.value[i] === '!' || activadorCorreo.value[i] === '@' || activadorCorreo.value[i] === '#' || activadorCorreo.value[i] === '$' || activadorCorreo.value[i] === '%' || activadorCorreo.value[i] === '^' || activadorCorreo.value[i] === '&' || activadorCorreo.value[i] === '*') {
+                                    valido2 = true
+                                }
+                            }
+                        }
+                    } else if (activadorCorreo.value[i] === '@' && valido) {
+                        if (valido) {
+                            invalido = true
+                        }
+                    }
+                }
+                if (activadorNombre.value.length < 4 || activadorApellido.value.length < 4 || activadorContra.value.length < 4 || !valido || !valido2 || invalido) {
+                    document.getElementById("btnEnvio").disabled = true
+                } else {
+                    document.getElementById("btnEnvio").disabled = false
+                }
+            })
+
+            activadorApellido.addEventListener("keyup", () => {
+                var valido = false
+                var valido2 = false
+                var invalido = false
+                for (var i = 0; i < activadorCorreo.value.length; i++) {
+                    if (activadorCorreo.value[i] === '@' && i != activadorCorreo.value.length - 1) {
+                        if (valido) {
+                            invalido = true
+                        } else {
+                            valido = true
+                            for (var i = 0; i < activadorContra.value.length; i++) {
+                                if (activadorCorreo.value[i] === '!' || activadorCorreo.value[i] === '@' || activadorCorreo.value[i] === '#' || activadorCorreo.value[i] === '$' || activadorCorreo.value[i] === '%' || activadorCorreo.value[i] === '^' || activadorCorreo.value[i] === '&' || activadorCorreo.value[i] === '*') {
+                                    valido2 = true
+                                }
+                            }
+                        }
+                    } else if (activadorCorreo.value[i] === '@' && valido) {
+                        if (valido) {
+                            invalido = true
+                        }
+                    }
+                }
+                if (activadorNombre.value.length < 4 || activadorApellido.value.length < 4 || activadorContra.value.length < 4 || !valido || !valido2 || invalido) {
+                    document.getElementById("btnEnvio").disabled = true
+                } else {
+                    document.getElementById("btnEnvio").disabled = false
+                }
+            })
+
+            activadorContra.addEventListener("keyup", () => {
+                var valido = false
+                var valido2 = false
+                var invalido = false
+                for (var i = 0; i < activadorCorreo.value.length; i++) {
+                    if (activadorCorreo.value[i] === '@' && i != activadorCorreo.value.length - 1) {
+                        if (valido) {
+                            invalido = true
+                        } else {
+                            valido = true
+                            for (var i = 0; i < activadorContra.value.length; i++) {
+                                if (activadorCorreo.value[i] === '!' || activadorCorreo.value[i] === '@' || activadorCorreo.value[i] === '#' || activadorCorreo.value[i] === '$' || activadorCorreo.value[i] === '%' || activadorCorreo.value[i] === '^' || activadorCorreo.value[i] === '&' || activadorCorreo.value[i] === '*') {
+                                    valido2 = true
+                                }
+                            }
+                        }
+                    } else if (activadorCorreo.value[i] === '@' && valido) {
+                        if (valido) {
+                            invalido = true
+                        }
+                    }
+                }
+                if (activadorNombre.value.length < 4 || activadorApellido.value.length < 4 || activadorContra.value.length < 4 || !valido || !valido2 || invalido) {
+                    document.getElementById("btnEnvio").disabled = true
+                } else {
+                    document.getElementById("btnEnvio").disabled = false
+                }
+            })
+
+            activadorCorreo.addEventListener("keyup", () => {
+                var valido = false
+                var valido2 = false
+                var invalido = false
+                for (var i = 0; i < activadorCorreo.value.length; i++) {
+                    if (activadorCorreo.value[i] === '@' && i != activadorCorreo.value.length - 1) {
+                        if (valido) {
+                            invalido = true
+                        } else {
+                            valido = true
+                            for (var i = 0; i < activadorContra.value.length; i++) {
+                                if (activadorCorreo.value[i] === '!' || activadorCorreo.value[i] === '@' || activadorCorreo.value[i] === '#' || activadorCorreo.value[i] === '$' || activadorCorreo.value[i] === '%' || activadorCorreo.value[i] === '^' || activadorCorreo.value[i] === '&' || activadorCorreo.value[i] === '*') {
+                                    valido2 = true
+                                }
+                            }
+                        }
+                    } else if (activadorCorreo.value[i] === '@' && valido) {
+                        if (valido) {
+                            invalido = true
+                        }
+                    }
+                }
+                if (activadorNombre.value.length < 4 || activadorApellido.value.length < 4 || activadorContra.value.length < 4 || !valido || !valido2 || invalido) {
+                    document.getElementById("btnEnvio").disabled = true
+                } else {
+                    document.getElementById("btnEnvio").disabled = false
+                }
+            })
+
+            function comprobar() {
+                var valido = false
+                var valido2 = false
+                var invalido = false
+                for (var i = 0; i < activadorCorreo.value.length; i++) {
+                    if (activadorCorreo.value[i] === '@' && i != activadorCorreo.value.length - 1) {
+                        if (valido) {
+                            invalido = true
+                        } else {
+                            valido = true
+                            for (var i = 0; i < activadorContra.value.length; i++) {
+                                if (activadorCorreo.value[i] === '!' || activadorCorreo.value[i] === '@' || activadorCorreo.value[i] === '#' || activadorCorreo.value[i] === '$' || activadorCorreo.value[i] === '%' || activadorCorreo.value[i] === '^' || activadorCorreo.value[i] === '&' || activadorCorreo.value[i] === '*') {
+                                    valido2 = true
+                                }
+                            }
+                        }
+                    } else if (activadorCorreo.value[i] === '@' && valido){
+                        if (valido) {
+                            invalido = true
+                        }
+                    }
+                }
+                if (activadorNombre.checkValidity() && activadorApellido.checkValidity() && activadorContra.checkValidity() && activadorCorreo.checkValidity() && valido && valido2 && !invalido) {
+                    alert('Felicidades! Enviaste el formulario')
+                } else {
+                    alert('No se cumple correctamente el formato')
+                }
+                
+            }
+
+        </script>
+
+    </body>
+</html>
