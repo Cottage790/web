@@ -86,192 +86,192 @@
 
         <script>
             let activadorNombre = document.getElementById("NombreTxt")
-            let activadorApellido = document.getElementById("ApellidoTxt")
-            let activadorContra = document.getElementById("ContraTxt")
-            let activadorCorreo = document.getElementById("CorreoTxt")
+        let activadorApellido = document.getElementById("ApellidoTxt")
+        let activadorContra = document.getElementById("ContraTxt")
+        let activadorCorreo = document.getElementById("CorreoTxt")
 
 
-            function soloLetras(e) {
-                key = e.keyCode || e.which;
-                tecla = String.fromCharCode(key).toLowerCase();
-                letras = "áéíóúabcdefghijklmnñopqrstuvwxyz";
-                especiales = [];
+        function soloLetras(e) {
+            key = e.keyCode || e.which;
+            tecla = String.fromCharCode(key).toLowerCase();
+            letras = "áéíóúabcdefghijklmnñopqrstuvwxyz";
+            especiales = [];
 
-                tecla_especial = false
-                for (var i in especiales) {
-                    if (key == especiales[i]) {
-                        tecla_especial = true;
-                        break;
-                    }
+            tecla_especial = false
+            for (var i in especiales) {
+                if (key == especiales[i]) {
+                    tecla_especial = true;
+                    break;
                 }
-
-                if (letras.indexOf(tecla) == -1 && !tecla_especial)
-                    return false;
             }
 
-            function soloContrasena(e) {
-                key = e.keyCode || e.which;
-                tecla = String.fromCharCode(key).toLowerCase();
-                letras = "áéíóúabcdefghijklmnñopqrstuvwxyz1234567890!@#$%^&*";
-                especiales = [];
+            if (letras.indexOf(tecla) == -1 && !tecla_especial)
+                return false;
+        }
 
-                tecla_especial = false
-                for (var i in especiales) {
-                    if (key == especiales[i]) {
-                        tecla_especial = true;
-                        break;
-                    }
+        function soloContrasena(e) {
+            key = e.keyCode || e.which;
+            tecla = String.fromCharCode(key).toLowerCase();
+            letras = "áéíóúabcdefghijklmnñopqrstuvwxyz1234567890!@#$%^&*";
+            especiales = [];
+
+            tecla_especial = false
+            for (var i in especiales) {
+                if (key == especiales[i]) {
+                    tecla_especial = true;
+                    break;
                 }
-
-                if (letras.indexOf(tecla) == -1 && !tecla_especial)
-                    return false;
             }
 
-            activadorNombre.addEventListener("keyup", () => {
-                var valido = false
-                var valido2 = false
-                var invalido = false
-                for (var i = 0; i < activadorCorreo.value.length; i++) {
-                    if (activadorCorreo.value[i] === '@' && i != activadorCorreo.value.length - 1) {
-                        if (valido) {
-                            invalido = true
-                        } else {
-                            valido = true
-                            for (var i = 0; i < activadorContra.value.length; i++) {
-                                if (activadorCorreo.value[i] === '!' || activadorCorreo.value[i] === '@' || activadorCorreo.value[i] === '#' || activadorCorreo.value[i] === '$' || activadorCorreo.value[i] === '%' || activadorCorreo.value[i] === '^' || activadorCorreo.value[i] === '&' || activadorCorreo.value[i] === '*') {
-                                    valido2 = true
-                                }
-                            }
-                        }
-                    } else if (activadorCorreo.value[i] === '@' && valido) {
-                        if (valido) {
-                            invalido = true
-                        }
-                    }
-                }
-                if (activadorNombre.value.length < 4 || activadorApellido.value.length < 4 || activadorContra.value.length < 4 || !valido || !valido2 || invalido) {
-                    document.getElementById("btnEnvio").disabled = true
-                } else {
-                    document.getElementById("btnEnvio").disabled = false
-                }
-            })
+            if (letras.indexOf(tecla) == -1 && !tecla_especial)
+                return false;
+        }
 
-            activadorApellido.addEventListener("keyup", () => {
-                var valido = false
-                var valido2 = false
-                var invalido = false
-                for (var i = 0; i < activadorCorreo.value.length; i++) {
-                    if (activadorCorreo.value[i] === '@' && i != activadorCorreo.value.length - 1) {
-                        if (valido) {
-                            invalido = true
-                        } else {
-                            valido = true
-                            for (var i = 0; i < activadorContra.value.length; i++) {
-                                if (activadorCorreo.value[i] === '!' || activadorCorreo.value[i] === '@' || activadorCorreo.value[i] === '#' || activadorCorreo.value[i] === '$' || activadorCorreo.value[i] === '%' || activadorCorreo.value[i] === '^' || activadorCorreo.value[i] === '&' || activadorCorreo.value[i] === '*') {
-                                    valido2 = true
-                                }
-                            }
-                        }
-                    } else if (activadorCorreo.value[i] === '@' && valido) {
-                        if (valido) {
-                            invalido = true
-                        }
+        activadorNombre.addEventListener("keyup", () => {
+            var valido = false
+            var valido2 = false
+            var invalido = false
+            for (var i = 0; i < activadorCorreo.value.length; i++) {
+                if (activadorCorreo.value[i] === '@' && i != activadorCorreo.value.length - 1) {
+                    if (valido) {
+                        invalido = true
+                    } else {
+                        valido = true
+                    }
+                } else if (activadorCorreo.value[i] === '@' && valido) {
+                    if (valido) {
+                        invalido = true
                     }
                 }
-                if (activadorNombre.value.length < 4 || activadorApellido.value.length < 4 || activadorContra.value.length < 4 || !valido || !valido2 || invalido) {
-                    document.getElementById("btnEnvio").disabled = true
-                } else {
-                    document.getElementById("btnEnvio").disabled = false
-                }
-            })
-
-            activadorContra.addEventListener("keyup", () => {
-                var valido = false
-                var valido2 = false
-                var invalido = false
-                for (var i = 0; i < activadorCorreo.value.length; i++) {
-                    if (activadorCorreo.value[i] === '@' && i != activadorCorreo.value.length - 1) {
-                        if (valido) {
-                            invalido = true
-                        } else {
-                            valido = true
-                            for (var i = 0; i < activadorContra.value.length; i++) {
-                                if (activadorCorreo.value[i] === '!' || activadorCorreo.value[i] === '@' || activadorCorreo.value[i] === '#' || activadorCorreo.value[i] === '$' || activadorCorreo.value[i] === '%' || activadorCorreo.value[i] === '^' || activadorCorreo.value[i] === '&' || activadorCorreo.value[i] === '*') {
-                                    valido2 = true
-                                }
-                            }
-                        }
-                    } else if (activadorCorreo.value[i] === '@' && valido) {
-                        if (valido) {
-                            invalido = true
-                        }
-                    }
-                }
-                if (activadorNombre.value.length < 4 || activadorApellido.value.length < 4 || activadorContra.value.length < 4 || !valido || !valido2 || invalido) {
-                    document.getElementById("btnEnvio").disabled = true
-                } else {
-                    document.getElementById("btnEnvio").disabled = false
-                }
-            })
-
-            activadorCorreo.addEventListener("keyup", () => {
-                var valido = false
-                var valido2 = false
-                var invalido = false
-                for (var i = 0; i < activadorCorreo.value.length; i++) {
-                    if (activadorCorreo.value[i] === '@' && i != activadorCorreo.value.length - 1) {
-                        if (valido) {
-                            invalido = true
-                        } else {
-                            valido = true
-                            for (var i = 0; i < activadorContra.value.length; i++) {
-                                if (activadorCorreo.value[i] === '!' || activadorCorreo.value[i] === '@' || activadorCorreo.value[i] === '#' || activadorCorreo.value[i] === '$' || activadorCorreo.value[i] === '%' || activadorCorreo.value[i] === '^' || activadorCorreo.value[i] === '&' || activadorCorreo.value[i] === '*') {
-                                    valido2 = true
-                                }
-                            }
-                        }
-                    } else if (activadorCorreo.value[i] === '@' && valido) {
-                        if (valido) {
-                            invalido = true
-                        }
-                    }
-                }
-                if (activadorNombre.value.length < 4 || activadorApellido.value.length < 4 || activadorContra.value.length < 4 || !valido || !valido2 || invalido) {
-                    document.getElementById("btnEnvio").disabled = true
-                } else {
-                    document.getElementById("btnEnvio").disabled = false
-                }
-            })
-
-            function comprobar() {
-                var valido = false
-                var valido2 = false
-                var invalido = false
-                for (var i = 0; i < activadorCorreo.value.length; i++) {
-                    if (activadorCorreo.value[i] === '@' && i != activadorCorreo.value.length - 1) {
-                        if (valido) {
-                            invalido = true
-                        } else {
-                            valido = true
-                            for (var i = 0; i < activadorContra.value.length; i++) {
-                                if (activadorCorreo.value[i] === '!' || activadorCorreo.value[i] === '@' || activadorCorreo.value[i] === '#' || activadorCorreo.value[i] === '$' || activadorCorreo.value[i] === '%' || activadorCorreo.value[i] === '^' || activadorCorreo.value[i] === '&' || activadorCorreo.value[i] === '*') {
-                                    valido2 = true
-                                }
-                            }
-                        }
-                    } else if (activadorCorreo.value[i] === '@' && valido){
-                        if (valido) {
-                            invalido = true
-                        }
-                    }
-                }
-                if (activadorNombre.checkValidity() && activadorApellido.checkValidity() && activadorContra.checkValidity() && activadorCorreo.checkValidity() && valido && valido2 && !invalido) {
-                    alert('Felicidades! Enviaste el formulario')
-                } else {
-                    alert('No se cumple correctamente el formato')
-                }
-                
             }
+            for (var i = 0; i < activadorContra.value.length; i++) {
+                if (activadorContra.value[i] === '!' || activadorContra.value[i] === '@' || activadorContra.value[i] === '#' || activadorContra.value[i] === '$' || activadorContra.value[i] === '%' || activadorContra.value[i] === '^' || activadorContra.value[i] === '&' || activadorContra.value[i] === '*') {
+                    valido2 = true
+                 }
+            }
+            if (activadorNombre.value.length < 4 || activadorApellido.value.length < 4 || activadorContra.value.length < 4 || !valido || !valido2 || invalido) {
+                document.getElementById("btnEnvio").disabled = true
+            } else {
+                document.getElementById("btnEnvio").disabled = false
+            }
+        })
+
+        activadorApellido.addEventListener("keyup", () => {
+            var valido = false
+            var valido2 = false
+            var invalido = false
+            for (var i = 0; i < activadorCorreo.value.length; i++) {
+                if (activadorCorreo.value[i] === '@' && i != activadorCorreo.value.length - 1) {
+                    if (valido) {
+                        invalido = true
+                    } else {
+                        valido = true
+                    }
+                } else if (activadorCorreo.value[i] === '@' && valido) {
+                    if (valido) {
+                        invalido = true
+                    }
+                }
+            }
+            for (var i = 0; i < activadorContra.value.length; i++) {
+                if (activadorContra.value[i] === '!' || activadorContra.value[i] === '@' || activadorContra.value[i] === '#' || activadorContra.value[i] === '$' || activadorContra.value[i] === '%' || activadorContra.value[i] === '^' || activadorContra.value[i] === '&' || activadorContra.value[i] === '*') {
+                    valido2 = true
+                 }
+            }
+            if (activadorNombre.value.length < 4 || activadorApellido.value.length < 4 || activadorContra.value.length < 4 || !valido || !valido2 || invalido) {
+                document.getElementById("btnEnvio").disabled = true
+            } else {
+                document.getElementById("btnEnvio").disabled = false
+            }
+        })
+
+        activadorContra.addEventListener("keyup", () => {
+            var valido = false
+            var valido2 = false
+            var invalido = false
+            for (var i = 0; i < activadorCorreo.value.length; i++) {
+                if (activadorCorreo.value[i] === '@' && i != activadorCorreo.value.length - 1) {
+                    if (valido) {
+                        invalido = true
+                    } else {
+                        valido = true
+                    }
+                } else if (activadorCorreo.value[i] === '@' && valido) {
+                    if (valido) {
+                        invalido = true
+                    }
+                }
+            }
+            for (var i = 0; i < activadorContra.value.length; i++) {
+                if (activadorContra.value[i] === '!' || activadorContra.value[i] === '@' || activadorContra.value[i] === '#' || activadorContra.value[i] === '$' || activadorContra.value[i] === '%' || activadorContra.value[i] === '^' || activadorContra.value[i] === '&' || activadorContra.value[i] === '*') {
+                    valido2 = true
+                 }
+            }
+            if (activadorNombre.value.length < 4 || activadorApellido.value.length < 4 || activadorContra.value.length < 4 || !valido || !valido2 || invalido) {
+                document.getElementById("btnEnvio").disabled = true
+            } else {
+                document.getElementById("btnEnvio").disabled = false
+            }
+        })
+
+        activadorCorreo.addEventListener("keyup", () => {
+            var valido = false
+            var valido2 = false
+            var invalido = false
+            for (var i = 0; i < activadorCorreo.value.length; i++) {
+                if (activadorCorreo.value[i] === '@' && i != activadorCorreo.value.length - 1) {
+                    if (valido) {
+                        invalido = true
+                    } else {
+                        valido = true
+                    }
+                } else if (activadorCorreo.value[i] === '@' && valido) {
+                    if (valido) {
+                        invalido = true
+                    }
+                }
+            }
+            for (var i = 0; i < activadorContra.value.length; i++) {
+                if (activadorContra.value[i] === '!' || activadorContra.value[i] === '@' || activadorContra.value[i] === '#' || activadorContra.value[i] === '$' || activadorContra.value[i] === '%' || activadorContra.value[i] === '^' || activadorContra.value[i] === '&' || activadorContra.value[i] === '*') {
+                    valido2 = true
+                 }
+            }
+            if (activadorNombre.value.length < 4 || activadorApellido.value.length < 4 || activadorContra.value.length < 4 || !valido || !valido2 || invalido) {
+                document.getElementById("btnEnvio").disabled = true
+            } else {
+                document.getElementById("btnEnvio").disabled = false
+            }
+        })
+
+        function comprobar() {
+            var valido = false
+            var valido2 = false
+            var invalido = false
+            for (var i = 0; i < activadorCorreo.value.length; i++) {
+                if (activadorCorreo.value[i] === '@' && i != activadorCorreo.value.length - 1) {
+                    if (valido) {
+                        invalido = true
+                    } else {
+                        valido = true
+                    }
+                } else if (activadorCorreo.value[i] === '@' && valido) {
+                    if (valido) {
+                        invalido = true
+                    }
+                }
+            }
+            for (var i = 0; i < activadorContra.value.length; i++) {
+                if (activadorContra.value[i] === '!' || activadorContra.value[i] === '@' || activadorContra.value[i] === '#' || activadorContra.value[i] === '$' || activadorContra.value[i] === '%' || activadorContra.value[i] === '^' || activadorContra.value[i] === '&' || activadorContra.value[i] === '*') {
+                    valido2 = true
+                 }
+            }
+            if (activadorNombre.checkValidity() && activadorApellido.checkValidity() && activadorContra.checkValidity() && activadorCorreo.checkValidity() && valido && valido2 && !invalido) {
+                alert('Felicidades! Enviaste el formulario')
+            } else {
+                alert('No se cumple correctamente el formato')
+            }
+
+        }
 
         </script>
 
